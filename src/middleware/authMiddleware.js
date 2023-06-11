@@ -1,4 +1,4 @@
-import jwt, { decode } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const validateToken = async (authToken) => {
   const token = authToken.slice(7, authToken.length)
@@ -23,7 +23,7 @@ export const authMiddleware = async (req, res, next) => {
     const token = req.headers.authorization
     if (token) {
       let userData
-      if ((!token.startsWith('Bearer '))) {
+      if (!token.startsWith('Bearer ')) {
         res.status(400).send({ message: 'Invalid' })
         return false
       }
@@ -36,8 +36,7 @@ export const authMiddleware = async (req, res, next) => {
       }
       req.user
       next()
-    }
-    else{
+    } else {
       res.send(400).send({ message: 'unauthorized' })
     }
   } catch (error) {
