@@ -3,7 +3,7 @@ import { deleteUserById, getUserById, getUsers, login, signUp, updateUser } from
 import { authMiddleware } from '../middleware/authMiddleware.js'
 export const userRouter = express.Router()
 userRouter.post('/signUp', signUp)
-userRouter.post('/login', authMiddleware, login)
+userRouter.post('/login', login)
 userRouter.get('/get-user', getUsers)
 userRouter.get('/get-user/:id', getUserById)
 userRouter.patch('/update/:id', updateUser)
