@@ -73,7 +73,7 @@ export const getUsers = async (req, res) => {
       },
     } = req
 
-    const getUsers = await User.find()
+    const getUsers = await User.find().populate('postId')
     res.status(200).send({ getUsers })
   } catch (error) {
     res.status(404).send(error)
@@ -138,5 +138,3 @@ export const deleteUserById = async (req, res) => {
     res.status(400).send(error)
   }
 }
-
-

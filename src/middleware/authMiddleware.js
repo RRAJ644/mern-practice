@@ -21,17 +21,19 @@ export const authMiddleware = async (req, res, next) => {
     } = req
 
     const token = req.headers.authorization
+    console.log(token)
     if (token) {
       let userData
       if (!token.startsWith('Bearer ')) {
         res.status(400).send({ message: 'Invalid' })
         return false
       }
-      userData = await validateToken(token)
-      const user = await User.findOne({ _id: userData?.user?._id })
 
+      userData = await validateToken(token)
+
+      const user = await User.findOne({ _id: userData?.checkUser?._id })
       if (!user) {
-        res.send(400).send({ message: 'user not exist' })
+        res.status(400).send({ message: 'user not exist' })
         return false
       }
       req.user = user

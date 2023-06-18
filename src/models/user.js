@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import {mongoose, model, Schema } from 'mongoose'
 
 const userSchema = new Schema({
   firstName: {
@@ -21,6 +21,12 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
+  postId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 })
 
 const User = new model('User', userSchema)
