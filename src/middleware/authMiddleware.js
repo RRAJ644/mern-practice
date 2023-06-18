@@ -34,7 +34,7 @@ export const authMiddleware = async (req, res, next) => {
         res.send(400).send({ message: 'user not exist' })
         return false
       }
-      req.user
+      req.user = user
       next()
     } else {
       res.send(400).send({ message: 'unauthorized' })
